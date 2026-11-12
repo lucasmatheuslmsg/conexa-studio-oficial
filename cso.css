@@ -426,7 +426,7 @@ a:focus-visible {
 .login__imagem {
   min-height: 460px;
   background-image:
-    url("imagens/tecnologia.jpg"),
+    url("imagens/estudos-con.jpg"),
     linear-gradient(135deg, #0a0f1c, #1e6fff);
   background-size: cover;
   background-position: center;
@@ -518,5 +518,141 @@ a:focus-visible {
   }
   .login__form {
     padding: 22px;
+  }
+}
+/* ===== BOTÃO DE CONTA (canto superior direito) ===== */
+
+/* O logo ocupa o espaço que sobrar, empurrando o botão para a direita */
+.topo__conteudo .logo {
+  flex: 1;
+}
+
+/* O menu vai para uma linha própria, abaixo do logo e do botão */
+.topo__conteudo .menu {
+  order: 3;       /* "order" coloca o menu por último */
+  width: 100%;
+}
+
+/* Botão destacado, com cor chamativa e brilho */
+.botao-conta {
+  background: var(--cor-destaque);
+  color: #04121f;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.6); /* brilho azul */
+}
+
+.botao-conta:hover {
+  filter: brightness(1.1);
+}
+
+/* Botão "Sair": discreto, só com contorno */
+.botao-conta--sair {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  box-shadow: none;
+}
+
+/* IMPORTANTE: sem esta regra, o atributo "hidden" não esconde o botão,
+   porque o CSS acima tem prioridade sobre ele */
+.botao-conta[hidden] {
+  display: none;
+}
+
+.botao-conta:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 3px;
+}
+
+/* Celular: logo e botão lado a lado, botão com tamanho confortável para o dedo */
+@media (max-width: 600px) {
+  .topo__conteudo {
+    justify-content: space-between;
+    text-align: left;
+  }
+
+  .botao-conta {
+    min-height: 48px;
+    padding: 10px 16px;
+  }
+}
+/* ===== LISTA DE PASSOS DENTRO DOS CARTÕES ===== */
+
+.passos {
+  margin-top: 12px;
+  padding-left: 22px;   /* espaço para os números */
+  text-align: left;     /* PC: alinhado à esquerda */
+}
+
+.passos li {
+  margin-bottom: 8px;
+}
+
+/* Celular: lista centralizada */
+@media (max-width: 600px) {
+  .cartao {
+    text-align: center;
+  }
+
+  .passos {
+    padding-left: 0;
+    text-align: center;
+    list-style-position: inside;  /* número fica junto do texto, para centralizar direito */
+  }
+}
+/* ===== CARTÃO DE INTENÇÕES ===== */
+
+/* Ocupa a largura toda da grade (da primeira à última coluna) */
+.cartao--largo {
+  grid-column: 1 / -1;
+}
+
+.intencoes {
+  margin-top: 12px;
+  padding-left: 22px;
+}
+
+.intencoes li {
+  margin-bottom: 8px;
+}
+
+/* Celular: texto centralizado, sem marcadores */
+@media (max-width: 600px) {
+  .cartao--largo {
+    text-align: center;
+  }
+
+  .intencoes {
+    padding-left: 0;
+    list-style: none;
+  }
+}
+/* ===== IMAGEM NA GRADE ===== */
+
+.imagem-grade {
+  margin: 0;
+  min-height: 180px;
+  border-radius: var(--raio);
+  overflow: hidden;   /* corta a imagem nos cantos arredondados */
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
+}
+
+/* object-fit: cover preenche o espaço sem deformar a imagem */
+.imagem-grade img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Celular: a imagem não fica gigante */
+@media (max-width: 600px) {
+  .imagem-grade {
+    max-height: 220px;
   }
 }

@@ -234,6 +234,36 @@ const niveisPorObjetivo = {
         "Durma bem na noite anterior"
       ]
     }
+  ],
+  // Provas técnicas: cursos técnicos, concursos de nível técnico e certificações
+  tecnica: [
+    {
+      titulo: "Fundamentos",
+      itens: [
+        "Descubra o tipo de prova: curso técnico, concurso de nível técnico ou certificação",
+        "Baixe o conteúdo programático (ementa ou edital) e liste os temas",
+        "Estude os conceitos base da sua área",
+        "Monte um glossário com termos técnicos, siglas e fórmulas"
+      ]
+    },
+    {
+      titulo: "Prática",
+      itens: [
+        "Faça exercícios práticos e estudos de caso da sua área",
+        "Resolva provas anteriores da instituição ou da banca",
+        "Treine em laboratório ou simuladores, quando houver",
+        "Revise normas técnicas e legislação da profissão"
+      ]
+    },
+    {
+      titulo: "Aprovação",
+      itens: [
+        "Faça simulados cronometrados com questões teóricas e práticas",
+        "Revise fórmulas, normas e siglas com flashcards",
+        "Refaça as questões que você errou",
+        "Confira o que é permitido levar para a prova, como calculadora e documentos"
+      ]
+    }
   ]
 };
 

@@ -47,6 +47,9 @@
         Exemplo: data-aba="metodos" abre a <section id="metodos">.
         O JavaScript (script.js) faz essa troca de abas.
       -->
+        <!-- Botões da conta, no canto superior direito -->
+      <button class="botao-conta" data-aba="login" id="botao-login">Entrar na conta</button>
+      <button class="botao-conta botao-conta--sair" id="botao-sair" hidden>Sair</button>
       <nav class="menu" aria-label="Menu principal">
         <button class="menu__botao ativo" data-aba="inicio">Início</button>
         <button class="menu__botao" data-aba="metodos">Métodos de estudo</button>
@@ -54,10 +57,6 @@
         <button class="menu__botao" data-aba="aulas">Aulas</button>
         <button class="menu__botao" data-aba="pdfs">PDFs</button>
         <button class="menu__botao" data-aba="contato">Contato</button>
-        <!-- Botão que abre a tela de login (aparece quando NÃO está logado) -->
-        <button class="menu__botao" data-aba="login" id="botao-login">Entrar</button>
-        <!-- Botão de sair (começa escondido por causa do "hidden") -->
-        <button class="menu__botao" id="botao-sair" hidden>Sair</button>
       </nav>
     </div>
   </header>
@@ -77,7 +76,7 @@
           A Conexa Studio Oficial ajuda você a organizar seus estudos com
           métodos comprovados, um passo a passo dividido em três níveis e
           materiais para você praticar. Serve para concurso público,
-          carreiras militares, ENEM, vestibulares e provas da escola.
+          carreiras militares, ENEM, vestibulares, provas da escola e provas técnicas, segue o bizu rapaziada.
         </p>
         <!-- Este botão também abre uma aba (usa o mesmo data-aba) -->
         <button class="botao" data-aba="metodos">Conhecer os métodos</button>
@@ -97,6 +96,22 @@
           <h3>📈 Três níveis</h3>
           <p>Do básico ao avançado: você sabe exatamente em que etapa está.</p>
         </article>
+        <!-- Cartão largo com as intenções da empresa -->
+         <!-- Imagem solta na grade (sem cartão). O "alt" descreve a imagem para leitores de tela -->
+<figure class="imagem-grade">
+  <img src="imagens/robo-con.jpg" alt="Estudantes usando tecnologia para estudar">
+</figure>
+<article class="cartao cartao--largo">
+  <h3>🚀 Nossas intenções</h3>
+  <p>A Conexa Studio Oficial nasceu com estes objetivos:</p>
+  <ul class="intencoes">
+    <li>Tornar o estudo mais simples e acessível para todos, de uma forma que os estudantes possam realmente se interessar nos estudos.</li>
+    <li>Ensinar métodos de estudo que funcionam na prática e são fáceis de aplicar no dia a dia.</li>
+    <li>Apoiar quem estuda para concursos, ENEM, vestibulares e provas técnicas.</li>
+    <li>Oferecer aulas e materiais organizados em um só lugar com o auxílio da ferramenta mais usada do momento INTELIGÊNCIA ARTIFICIAL.</li>
+    <li>Crescer junto com os estudantes, ouvindo as suas opiniões e feedback.</li>
+  </ul>
+</article>
       </div>
     </section>
 
@@ -105,43 +120,94 @@
       <h2>Métodos de estudo</h2>
       <p class="intro">Você não precisa usar todos de uma vez. Teste, veja qual combina com você e vá combinando.</p>
 
-      <div class="grade">
-        <!-- Cada <article class="cartao"> é um método. Para adicionar outro, copie um cartão inteiro e mude o texto. -->
-        <article class="cartao">
-          <h3>🍅 Pomodoro</h3>
-          <p>Estude 25 minutos sem distração e descanse 5. A cada 4 ciclos, faça uma pausa maior (15 a 30 min). Ajuda a manter o foco.</p>
-        </article>
+     <div class="grade">
 
-        <article class="cartao">
-          <h3>🧠 Recordação ativa</h3>
-          <p>Em vez de só reler, feche o material e tente lembrar o que aprendeu. Responder perguntas fixa muito mais.</p>
-        </article>
+  <!-- Cada cartão tem: título (h3), uma frase (p) e a lista de passos (ol) -->
+  <article class="cartao">
+    <h3>🍅 Pomodoro</h3>
+    <p>Estudar em blocos curtos para manter o foco.</p>
+    <ol class="passos">
+      <li>Escolha UMA tarefa para estudar.</li>
+      <li>Ligue um cronômetro de 25 minutos.</li>
+      <li>Estude sem celular e sem interrupções.</li>
+      <li>Quando tocar, descanse 5 minutos.</li>
+      <li>A cada 4 blocos, faça uma pausa de 15 a 30 minutos.</li>
+    </ol>
+  </article>
 
-        <article class="cartao">
-          <h3>🔁 Revisão espaçada</h3>
-          <p>Revise o conteúdo em intervalos crescentes: 1 dia, 7 dias, 15 dias e 30 dias depois. Evita esquecer.</p>
-        </article>
+  <article class="cartao">
+    <h3>🧠 Recordação ativa</h3>
+    <p>Testar a si mesmo em vez de só reler.</p>
+    <ol class="passos">
+      <li>Estude um tema por 20 ou 30 minutos.</li>
+      <li>Feche o material.</li>
+      <li>Escreva tudo o que lembrar, sem olhar.</li>
+      <li>Compare com o material e marque o que esqueceu.</li>
+      <li>Estude de novo só o que faltou.</li>
+    </ol>
+  </article>
 
-        <article class="cartao">
-          <h3>👨‍🏫 Técnica Feynman</h3>
-          <p>Explique o assunto com palavras simples, como se ensinasse a um amigo. Onde você travar, é onde precisa estudar mais.</p>
-        </article>
+  <article class="cartao">
+    <h3>🔁 Revisão espaçada</h3>
+    <p>Revisar em intervalos crescentes para não esquecer.</p>
+    <ol class="passos">
+      <li>Estude o conteúdo novo.</li>
+      <li>Revise no dia seguinte.</li>
+      <li>Revise de novo após 7 dias.</li>
+      <li>Depois, após 15 dias.</li>
+      <li>Por fim, após 30 dias.</li>
+    </ol>
+  </article>
 
-        <article class="cartao">
-          <h3>🗺️ Mapas mentais</h3>
-          <p>Coloque o tema no centro e abra ramos com os subtemas. Ótimo para visualizar matérias grandes.</p>
-        </article>
+  <article class="cartao">
+    <h3>👨‍🏫 Técnica Feynman</h3>
+    <p>Aprender explicando de forma simples.</p>
+    <ol class="passos">
+      <li>Escolha um tema e escreva o nome no topo da folha.</li>
+      <li>Explique com palavras simples, como para uma criança.</li>
+      <li>Anote os pontos em que você travou.</li>
+      <li>Volte ao material e estude só esses pontos.</li>
+      <li>Explique de novo, até ficar claro.</li>
+    </ol>
+  </article>
 
-        <article class="cartao">
-          <h3>✍️ Resolução de questões</h3>
-          <p>Resolva provas anteriores e anote seus erros. É a forma mais direta de saber como a banca cobra.</p>
-        </article>
+  <article class="cartao">
+    <h3>🗺️ Mapas mentais</h3>
+    <p>Organizar o assunto de forma visual.</p>
+    <ol class="passos">
+      <li>Escreva o tema principal no centro da folha.</li>
+      <li>Abra ramos com os subtemas.</li>
+      <li>Use palavras-chave, não frases longas.</li>
+      <li>Use cores diferentes para cada ramo.</li>
+      <li>Revise olhando só o mapa e tentando explicar cada ramo.</li>
+    </ol>
+  </article>
 
-        <article class="cartao">
-          <h3>📅 Cronograma semanal</h3>
-          <p>Defina dias e horários para cada matéria. Constância vale mais do que maratonas de fim de semana.</p>
-        </article>
-      </div>
+  <article class="cartao">
+    <h3>✍️ Resolução de questões</h3>
+    <p>Treinar do jeito que a prova cobra.</p>
+    <ol class="passos">
+      <li>Estude a teoria de um tema.</li>
+      <li>Resolva de 10 a 20 questões sobre ele.</li>
+      <li>Confira o gabarito.</li>
+      <li>Anote cada erro e o motivo em um caderno de erros.</li>
+      <li>Refaça as questões erradas depois de alguns dias.</li>
+    </ol>
+  </article>
+
+  <article class="cartao">
+    <h3>📅 Cronograma semanal</h3>
+    <p>Organizar o tempo para estudar com constância.</p>
+    <ol class="passos">
+      <li>Liste as matérias e quanto cada uma precisa de tempo.</li>
+      <li>Marque os horários livres da sua semana.</li>
+      <li>Distribua as matérias nesses horários.</li>
+      <li>Deixe um dia para revisão e simulado.</li>
+      <li>No fim da semana, ajuste o que não funcionou.</li>
+    </ol>
+  </article>
+
+</div>
     </section>
 
     <!-- ================= ABA: NÍVEIS DE ESTUDO ================= -->
@@ -160,6 +226,7 @@
         <button class="chip" data-objetivo="enem">ENEM</button>
         <button class="chip" data-objetivo="vestibular">Vestibular</button>
         <button class="chip" data-objetivo="escolar">Provas escolares</button>
+        <button class="chip" data-objetivo="tecnica">Provas técnicas</button>
       </div>
 
       <!-- Esta div começa vazia: o script.js preenche com os 3 níveis -->
@@ -183,12 +250,12 @@
       <div class="grade">
         <article class="cartao">
           <h3>🎥 Aula 01 (em breve)</h3>
-          <p>Descrição da aula. Troque este texto quando a aula estiver pronta.</p>
+          <p>Em breve, você encontrará aqui a primeira aula da Conexa Studio.</p>
         </article>
 
         <article class="cartao">
           <h3>🎥 Aula 02 (em breve)</h3>
-          <p>Descrição da aula. Troque este texto quando a aula estiver pronta.</p>
+          <p>Em breve, você encontrará aqui a segunda aula da Conexa Studio e muito mais conteúdo.</p>
         </article>
       </div>
     </section>
@@ -207,8 +274,8 @@
       -->
       <div class="grade">
         <article class="cartao">
-          <h3>📄 PDF de exemplo</h3>
-          <p>Resumo de exemplo (ainda sem arquivo).</p>
+          <h3>📄 PDF</h3>
+          <p>ainda sem arquivo.</p>
           <!-- Quando tiver o arquivo, troque "#" por "pdfs/resumo-portugues.pdf" -->
           <a class="botao botao--pequeno" href="#" download>Baixar PDF</a>
         </article>
@@ -222,11 +289,9 @@
       <div class="grade">
         <!-- Cartão com os donos da empresa -->
         <article class="cartao">
-          <h3>👥 Donos</h3>
+          <h3>👥 Empresa</h3>
           <ul>
-            <li>João Victor</li>
-            <li>João Guilherme</li>
-            <li>Lucas Matheus</li>
+            <li>Conexa Studio Oficial</li>
           </ul>
         </article>
 

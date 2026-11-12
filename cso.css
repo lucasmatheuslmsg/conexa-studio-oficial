@@ -680,3 +680,85 @@ a:focus-visible {
       width: 36px;
   }
 }
+/* ===== FUNDO DE UNIVERSO ===== */
+
+/* Cor de reserva, caso a imagem demore ou falhe ao carregar */
+body {
+  background: #050816;
+}
+
+/* A imagem fica numa camada fixa atrás do site inteiro.
+   Isso funciona melhor no celular do que "background-attachment: fixed". */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;          /* cobre a tela toda */
+  z-index: -1;       /* fica atrás de todo o conteúdo */
+  background:
+    linear-gradient(rgba(5, 8, 22, 0.55), rgba(5, 8, 22, 0.75)),
+    url("imagens/universo-con.jpg") center / cover no-repeat;
+}
+
+/* Textos que ficam direto sobre o fundo precisam ser claros */
+.aba h2 {
+  color: #ffffff;
+}
+
+.intro {
+  color: #cbd5e1;
+}
+
+/* Topo levemente transparente, com efeito de vidro */
+.topo {
+  background: rgba(10, 15, 28, 0.85);
+  backdrop-filter: blur(6px);
+}
+
+/* Cartões quase brancos, deixando o fundo aparecer de leve */
+.cartao {
+  background: rgba(255, 255, 255, 0.94);
+}
+/* Zoom bem lento, indo e voltando */
+@keyframes flutuar {
+  from { transform: scale(1); }
+  to   { transform: scale(1.08); }
+}
+
+body::before {
+  animation: flutuar 40s ease-in-out infinite alternate;
+}
+
+/* Para quem desativou animações no aparelho */
+@media (prefers-reduced-motion: reduce) {
+  body::before {
+    animation: none;
+  }
+}
+/* ===== TEXTO À ESQUERDA NOS CARTÕES (PC E CELULAR) ===== */
+
+.cartao,
+.cartao--largo {
+  text-align: left;
+  overflow-wrap: break-word;   /* palavras longas quebram em vez de vazar do cartão */
+}
+
+/* Lista de intenções: marcadores de volta e alinhada à esquerda */
+.intencoes {
+  list-style: disc;
+  list-style-position: outside;
+  padding-left: 22px;
+  text-align: left;
+}
+
+/* Lista numerada dos métodos: números de volta e alinhada à esquerda */
+.passos {
+  list-style-position: outside;
+  padding-left: 24px;
+  text-align: left;
+}
+
+.intencoes li,
+.passos li {
+  text-align: left;
+  margin-bottom: 8px;
+}

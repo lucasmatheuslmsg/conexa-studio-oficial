@@ -353,7 +353,7 @@ const CHAVE_LOGADO = "conexa_logado";     // e-mail de quem está logado
 
 // Abas que exigem login. Para proteger outras, acrescente o id
 // aqui, por exemplo: ["metodos", "niveis", "aulas", "pdfs"]
-const abasProtegidas = ["metodos", "niveis"];
+const abasProtegidas = ["metodos", "niveis", "aulas", "pdfs"];
 
 // Pegamos os elementos da tela de login
 const formEntrar = document.getElementById("form-entrar");

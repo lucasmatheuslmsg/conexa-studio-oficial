@@ -22,7 +22,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Título que aparece na aba do navegador -->
-  <title>Conexa Studio Oficial | Estude do jeito certo</title>
+  <title>Papo De Futuro | Estude do jeito certo</title>
 
   <!-- Descrição que aparece em buscadores como o Google -->
   <meta name="description" content="Métodos de estudo, níveis de preparação e materiais para concursos, militares, ENEM, vestibulares e provas escolares.">
@@ -39,8 +39,7 @@
   <header class="topo">
     <div class="container topo__conteudo">
 
-      <!-- Nome da empresa -->
-      <h1 class="logo">Conexa <span>Studio</span> Oficial</h1>
+      <h1 class="logo">Papo De Futuro</h1>
 
       <!--
         MENU DE ABAS
@@ -55,6 +54,10 @@
         <button class="menu__botao" data-aba="aulas">Aulas</button>
         <button class="menu__botao" data-aba="pdfs">PDFs</button>
         <button class="menu__botao" data-aba="contato">Contato</button>
+        <!-- Botão que abre a tela de login (aparece quando NÃO está logado) -->
+        <button class="menu__botao" data-aba="login" id="botao-login">Entrar</button>
+        <!-- Botão de sair (começa escondido por causa do "hidden") -->
+        <button class="menu__botao" id="botao-sair" hidden>Sair</button>
       </nav>
     </div>
   </header>
@@ -230,21 +233,82 @@
         <!-- Cartão com os dados de contato -->
         <article class="cartao">
           <h3>📞 Fale com a gente</h3>
-          <!-- Número FICTÍCIO: troque pelo número real quando tiver -->
           <p>WhatsApp: (81) 98971-6744</p>
-          <!-- "mailto:" abre o aplicativo de e-mail da pessoa ao clicar -->
           <p>E-mail: <a href="mailto:conexastudioofc@gmail.com">conexastudioofc@gmail.com</a></p>
         </article>
       </div>
     </section>
+      <!-- ===================== ABA: LOGIN ===================== -->
+<section id="login" class="aba">
+  <div class="login">
 
+    <!-- LADO ESQUERDO: foto de tecnologia (só decoração) -->
+    <div class="login__imagem" aria-hidden="true">
+      <p class="login__legenda">Estude com tecnologia ao seu favor</p>
+    </div>
+
+    <!-- LADO DIREITO: formulários -->
+    <div class="login__form">
+
+      <!-- Mensagens de erro ou sucesso aparecem aqui -->
+      <p id="aviso-login" class="mensagem" role="alert"></p>
+
+      <!-- FORMULÁRIO DE ENTRAR (aparece primeiro) -->
+      <form id="form-entrar">
+        <h2>Entrar</h2>
+
+        <div class="campo">
+          <label for="entrar-email">E-mail</label>
+          <input type="email" id="entrar-email" autocomplete="email" required>
+        </div>
+
+        <div class="campo">
+          <label for="entrar-senha">Senha</label>
+          <input type="password" id="entrar-senha" autocomplete="current-password" required>
+        </div>
+
+        <button type="submit" class="botao">Entrar</button>
+        <button type="button" class="link-botao" id="ir-cadastro">Não tem conta? Criar conta</button>
+      </form>
+
+      <!-- FORMULÁRIO DE CADASTRO (começa escondido por causa do "hidden") -->
+      <form id="form-cadastro" hidden>
+        <h2>Criar conta</h2>
+
+        <div class="campo">
+          <label for="cad-nome">Nome completo</label>
+          <input type="text" id="cad-nome" autocomplete="name" required>
+        </div>
+
+        <div class="campo">
+          <label for="cad-email">E-mail</label>
+          <input type="email" id="cad-email" autocomplete="email" required>
+        </div>
+
+        <div class="campo">
+          <label for="cad-cpf">CPF (use um número fictício no teste)</label>
+          <!-- inputmode="numeric" abre o teclado de números no celular -->
+          <input type="text" id="cad-cpf" inputmode="numeric" maxlength="14" placeholder="000.000.000-00" required>
+        </div>
+
+        <div class="campo">
+          <label for="cad-senha">Senha (mínimo 6 caracteres)</label>
+          <input type="password" id="cad-senha" autocomplete="new-password" minlength="6" required>
+        </div>
+
+        <button type="submit" class="botao">Criar conta</button>
+        <button type="button" class="link-botao" id="ir-entrar">Já tem conta? Entrar</button>
+      </form>
+
+    </div>
+  </div>
+</section>
   </main>
 
   <!-- =========================================================
        RODAPÉ
        ========================================================= -->
   <footer class="rodape">
-    <!-- O ano é preenchido automaticamente pelo script.js -->
     <p>© <span id="ano"></span> Conexa Studio Oficial. Todos os direitos reservados.</p>
   </footer>
 

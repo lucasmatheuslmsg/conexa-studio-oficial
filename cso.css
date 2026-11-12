@@ -324,3 +324,89 @@ body {
     padding: 28px 20px;
   }
 }
+/* ===== MELHORIAS PARA CELULAR ===== */
+@media (max-width: 600px) {
+
+  /* Topo deixa de ficar fixo: ganha espaço de tela ao rolar */
+  .topo {
+    position: static;
+    padding: 14px 0;
+  }
+
+  .logo {
+    font-size: 1.25rem;
+  }
+
+  /* Menu vira uma grade de 2 colunas, uma embaixo da outra */
+  .menu {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    width: 100%;
+  }
+
+  /* Botões grandes, fáceis de tocar com o dedo (mínimo 48px de altura) */
+  .menu__botao {
+    min-height: 48px;
+    padding: 10px 8px;
+    font-size: 1rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Botão da aba aberta bem destacado */
+  .menu__botao.ativo {
+    background: var(--cor-principal);
+    font-weight: bold;
+  }
+
+  /* Abas e cartões em coluna única, com espaços menores */
+  .aba {
+    padding: 24px 0;
+  }
+
+  .aba h2 {
+    font-size: 1.5rem;
+  }
+
+  .grade {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /* Texto um pouco maior para facilitar a leitura */
+  body {
+    font-size: 1.05rem;
+  }
+
+  /* Botões de objetivo e botões de ação ocupam a largura toda */
+  .chip,
+  .botao {
+    min-height: 48px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .objetivos {
+    flex-direction: column;
+  }
+}
+
+/* ===== ACESSIBILIDADE (vale para todas as telas) ===== */
+
+/* Contorno visível ao navegar pelo teclado */
+.menu__botao:focus-visible,
+.chip:focus-visible,
+.botao:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--cor-destaque);
+  outline-offset: 3px;
+}
+
+/* Remove animações para quem desativou movimento no aparelho */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

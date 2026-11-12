@@ -656,3 +656,27 @@ a:focus-visible {
     max-height: 220px;
   }
 }
+/* ===== LOGO NO TOPO ===== */
+
+/* Imagem e nome lado a lado, alinhados ao centro */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Altura fixa; a largura se ajusta sozinha, sem deformar */
+.logo__img {
+  height: 44px;
+  width: 44px;          /* largura igual à altura, para ficar um quadrado perfeito */
+  object-fit: cover;    /* a imagem preenche o círculo sem ficar esticada */
+  border-radius: 50%;   /* 50% transforma o quadrado em círculo */
+
+}
+
+@media (max-width: 600px) {
+  .logo__img {
+      height: 36px;
+      width: 36px;
+  }
+}

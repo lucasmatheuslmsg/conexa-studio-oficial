@@ -33,6 +33,12 @@ const botoesMenu = document.querySelectorAll(".menu__botao");
    3) destaca o botão correspondente no menu.
 */
 function abrirAba(id) {
+    // Se a aba for protegida e a pessoa não estiver logada,
+  // troca o destino para a tela de login e mostra um aviso.
+  if (abasProtegidas.includes(id) && !estaLogado()) {
+    id = "login";
+    mostrarAviso("Faça login para acessar este conteúdo.", "erro");
+  }
 
   // forEach = "para cada item da lista, faça isto".
   // classList.remove tira a classe "ativa" (a aba some pelo CSS).
@@ -307,3 +313,154 @@ mostrarNiveis("concurso");
 // new Date() pega a data de hoje; getFullYear() devolve só o ano.
 // textContent coloca esse valor dentro do <span id="ano">.
 document.getElementById("ano").textContent = new Date().getFullYear();
+/* ============================================================
+   LOGIN DE TESTE (guarda os dados no navegador)
+   ============================================================ */
+
+// Nomes das "gavetas" do localStorage onde guardamos os dados
+const CHAVE_USUARIOS = "conexa_usuarios"; // lista de contas criadas
+const CHAVE_LOGADO = "conexa_logado";     // e-mail de quem está logado
+
+// Abas que exigem login. Para proteger outras, acrescente o id
+// aqui, por exemplo: ["metodos", "niveis", "aulas", "pdfs"]
+const abasProtegidas = ["metodos", "niveis"];
+
+// Pegamos os elementos da tela de login
+const formEntrar = document.getElementById("form-entrar");
+const formCadastro = document.getElementById("form-cadastro");
+const avisoLogin = document.getElementById("aviso-login");
+const campoCpf = document.getElementById("cad-cpf");
+
+// Lê a lista de usuários salva. Se não houver nenhuma, devolve lista vazia.
+function lerUsuarios() {
+  try {
+    return JSON.parse(localStorage.getItem(CHAVE_USUARIOS)) || [];
+  } catch (erro) {
+    return [];
+  }
+}
+
+// Retorna true se existe alguém logado
+function estaLogado() {
+  return localStorage.getItem(CHAVE_LOGADO) !== null;
+}
+
+// Mostra uma mensagem na tela de login (tipo: "erro" ou "sucesso")
+function mostrarAviso(texto, tipo) {
+  avisoLogin.textContent = texto;
+  avisoLogin.className = "mensagem " + tipo;
+}
+
+// Atualiza o menu: troca Entrar/Sair e põe cadeado nas abas bloqueadas
+function atualizarMenu() {
+  const logado = estaLogado();
+
+  document.getElementById("botao-login").hidden = logado;
+  document.getElementById("botao-sair").hidden = !logado;
+
+  botoesMenu.forEach(function (botao) {
+    const protegida = abasProtegidas.includes(botao.dataset.aba);
+    botao.classList.toggle("bloqueado", protegida && !logado);
+  });
+}
+
+// ---------- Alternar entre os formulários ----------
+document.getElementById("ir-cadastro").addEventListener("click", function () {
+  formEntrar.hidden = true;
+  formCadastro.hidden = false;
+  mostrarAviso("", "");
+});
+
+document.getElementById("ir-entrar").addEventListener("click", function () {
+  formCadastro.hidden = true;
+  formEntrar.hidden = false;
+  mostrarAviso("", "");
+});
+
+// ---------- Máscara do CPF (000.000.000-00) ----------
+campoCpf.addEventListener("input", function () {
+  let numeros = campoCpf.value.replace(/\D/g, "").slice(0, 11); // só dígitos
+  numeros = numeros.replace(/(\d{3})(\d)/, "$1.$2");
+  numeros = numeros.replace(/(\d{3})(\d)/, "$1.$2");
+  numeros = numeros.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+  campoCpf.value = numeros;
+});
+
+// ---------- Criar conta ----------
+formCadastro.addEventListener("submit", function (evento) {
+  evento.preventDefault(); // impede a página de recarregar
+
+  const nome = document.getElementById("cad-nome").value.trim();
+  const email = document.getElementById("cad-email").value.trim().toLowerCase();
+  const cpf = campoCpf.value.replace(/\D/g, ""); // guarda só os números
+  const senha = document.getElementById("cad-senha").value;
+
+  // Validações simples
+  if (nome.length < 3) {
+    mostrarAviso("Digite seu nome completo.", "erro");
+    return;
+  }
+  if (cpf.length !== 11) {
+    mostrarAviso("O CPF precisa ter 11 números.", "erro");
+    return;
+  }
+  if (senha.length < 6) {
+    mostrarAviso("A senha precisa ter pelo menos 6 caracteres.", "erro");
+    return;
+  }
+
+  const usuarios = lerUsuarios();
+
+  // some() confere se algum usuário já usa esse e-mail
+  const jaExiste = usuarios.some(function (u) {
+    return u.email === email;
+  });
+  if (jaExiste) {
+    mostrarAviso("Este e-mail já tem cadastro. Tente entrar.", "erro");
+    return;
+  }
+
+  // Salva a nova conta e já deixa a pessoa logada
+  usuarios.push({ nome: nome, email: email, cpf: cpf, senha: senha });
+  localStorage.setItem(CHAVE_USUARIOS, JSON.stringify(usuarios));
+  localStorage.setItem(CHAVE_LOGADO, email);
+
+  formCadastro.reset();
+  mostrarAviso("", "");
+  atualizarMenu();
+  abrirAba("inicio");
+});
+
+// ---------- Entrar ----------
+formEntrar.addEventListener("submit", function (evento) {
+  evento.preventDefault();
+
+  const email = document.getElementById("entrar-email").value.trim().toLowerCase();
+  const senha = document.getElementById("entrar-senha").value;
+
+  // find() procura o usuário com esse e-mail E essa senha
+  const usuario = lerUsuarios().find(function (u) {
+    return u.email === email && u.senha === senha;
+  });
+
+  if (!usuario) {
+    mostrarAviso("E-mail ou senha incorretos.", "erro");
+    return;
+  }
+
+  localStorage.setItem(CHAVE_LOGADO, usuario.email);
+  formEntrar.reset();
+  mostrarAviso("", "");
+  atualizarMenu();
+  abrirAba("inicio");
+});
+
+// ---------- Sair ----------
+document.getElementById("botao-sair").addEventListener("click", function () {
+  localStorage.removeItem(CHAVE_LOGADO);
+  atualizarMenu();
+  abrirAba("inicio");
+});
+
+// Ao abrir o site, ajusta o menu conforme o estado do login
+atualizarMenu();
